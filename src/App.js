@@ -2,6 +2,7 @@ import './App.css';
 import {useDispatch, useSelector} from "react-redux";
 import {addCashAC, getCashAC} from "./store/cashReducer";
 import {addCustomerAC, removeCustomerAC} from "./store/customerReducer";
+import {fetchCustomers} from "./asyncActions/customersDB";
 
 function App() {
     const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function App() {
         dispatch(removeCustomerAC(customer.id));
     };
 
+
     return (
         <div className="App">
             <div style={{fontSize: "3rem"}}>{cash}</div>
@@ -46,7 +48,10 @@ function App() {
                         onClick={() => addClientHandler(prompt('Customer name'))}>
                         Add a customer
                     </button>
-                    {/*<button onClick={() => removeClientHandler(prompt('Customer name to remove'))}>Remove a customer</button>*/}
+                </div>
+                <div>
+                    <button
+                        onClick={() => dispatch(fetchCustomers())}>Получить клиентов с сервера</button>
                 </div>
             </div>
             <div>
